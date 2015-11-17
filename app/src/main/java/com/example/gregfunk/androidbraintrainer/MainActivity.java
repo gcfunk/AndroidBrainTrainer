@@ -1,5 +1,6 @@
 package com.example.gregfunk.androidbraintrainer;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     Button startButton;
+    TextView timerTextView;
     TextView sumTextView;
     TextView pointsTextView;
     TextView resultTextView;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         startButton = (Button) findViewById(R.id.startButton);
+        timerTextView = (TextView) findViewById(R.id.timerTextView);
         sumTextView = (TextView) findViewById(R.id.sumTextView);
         pointsTextView = (TextView) findViewById(R.id.pointsTextView);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
@@ -88,5 +91,19 @@ public class MainActivity extends AppCompatActivity {
         button3 = (Button) findViewById(R.id.button3);
 
         generateQuestion();
+
+        new CountDownTimer(3000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timerTextView.setText(String.valueOf(millisUntilFinished / 1000) + "s");
+            }
+
+            @Override
+            public void onFinish() {
+                timerTextView.setText("0s");
+                resultTextView.setText("Your score : " + pointsTextView.getText());
+            }
+        }.start();
     }
 }
