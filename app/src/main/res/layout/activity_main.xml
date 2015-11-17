@@ -131,4 +131,15 @@
         android:layout_alignBottom="@+id/startButton"
         android:layout_centerHorizontal="true"
         android:textSize="30sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Again?"
+        android:id="@+id/playAgainButton"
+        android:layout_below="@+id/startButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:onClick="playAgain"
+        android:visibility="invisible" />
 </RelativeLayout>
