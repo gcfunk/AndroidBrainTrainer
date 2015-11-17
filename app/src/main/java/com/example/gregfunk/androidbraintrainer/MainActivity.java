@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         sumTextView.setText(Integer.toString(a) + " + " + Integer.toString(b));
 
         locationOfCorrectAnswer = rand.nextInt(4);
+        answers.clear();
 
         int incorrectAnswer;
 
