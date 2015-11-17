@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button startButton;
     TextView sumTextView;
+    TextView pointsTextView;
     TextView resultTextView;
     Button button0;
     Button button1;
@@ -23,6 +24,19 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Integer> answers = new ArrayList<Integer>();
     int locationOfCorrectAnswer;
+    int score = 0;
+    int numberOfQuestions = 0;
+
+    public void chooseAnswer(View view) {
+        if (view.getTag().toString().equals(Integer.toString(locationOfCorrectAnswer))) {
+            score++;
+            resultTextView.setText("Correct!");
+        } else {
+            resultTextView.setText("Wrong");
+        }
+        numberOfQuestions++;
+        pointsTextView.setText(Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
+    }
 
     public void start(View view) {
         startButton.setVisibility(View.INVISIBLE);
@@ -35,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         startButton = (Button) findViewById(R.id.startButton);
         sumTextView = (TextView) findViewById(R.id.sumTextView);
+        pointsTextView = (TextView) findViewById(R.id.pointsTextView);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
         button0 = (Button) findViewById(R.id.button0);
         button1 = (Button) findViewById(R.id.button1);
