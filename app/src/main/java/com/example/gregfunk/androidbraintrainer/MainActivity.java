@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button button2;
     Button button3;
     Button playAgainButton;
+    RelativeLayout gameRelativeLayout;
 
     ArrayList<Integer> answers = new ArrayList<Integer>();
     int locationOfCorrectAnswer;
@@ -100,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View view) {
         startButton.setVisibility(View.INVISIBLE);
+        gameRelativeLayout.setVisibility(View.VISIBLE);
+
+        playAgain(playAgainButton);
     }
 
     @Override
@@ -117,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         playAgainButton = (Button) findViewById(R.id.playAgainButton);
-
-        playAgain(playAgainButton);
+        gameRelativeLayout = (RelativeLayout) findViewById(R.id.gameRelativeLayout);
     }
 }
