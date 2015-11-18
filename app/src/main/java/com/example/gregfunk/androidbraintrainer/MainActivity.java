@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     int locationOfCorrectAnswer;
     int score = 0;
     int numberOfQuestions = 0;
+    boolean gameIsActive = false;
 
     public void playAgain(View view) {
         score = 0;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         pointsTextView.setText("0/0");
         resultTextView.setText("");
         playAgainButton.setVisibility(View.INVISIBLE);
+        gameIsActive = true;
 
         new CountDownTimer(30000, 1000) {
 
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                gameIsActive = false;
                 timerTextView.setText("0s");
                 resultTextView.setText("Your score : " + pointsTextView.getText());
                 playAgainButton.setVisibility(View.VISIBLE);
@@ -89,15 +92,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void chooseAnswer(View view) {
-        if (view.getTag().toString().equals(Integer.toString(locationOfCorrectAnswer))) {
-            score++;
-            resultTextView.setText("Correct!");
-        } else {
-            resultTextView.setText("Wrong");
+        if (gameIsActive) {
+            if (view.getTag().toString().equals(Integer.toString(locationOfCorrectAnswer))) {
+                score++;
+                resultTextView.setText("Correct!");
+            } else {
+                resultTextView.setText("Wrong");
+            }
+            numberOfQuestions++;
+            pointsTextView.setText(Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
+            generateQuestion();
         }
-        numberOfQuestions++;
-        pointsTextView.setText(Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
-        generateQuestion();
     }
 
     public void start(View view) {
